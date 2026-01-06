@@ -97,7 +97,7 @@ const Audio = () => {
 
     fadeInterval.current = setInterval(() => {
       if (audio.volume < 1) {
-        audio.volume = Math.min(audio.volume + 0.4, 1);
+        audio.volume = Math.min(audio.volume + 0.05, 1);
       } else {
         clearInterval(fadeInterval.current);
       }
@@ -112,7 +112,7 @@ const Audio = () => {
 
     fadeInterval.current = setInterval(() => {
       if (audio.volume > 0) {
-        audio.volume = Math.max(audio.volume - 0.4, 0);
+        audio.volume = Math.max(audio.volume - 0.05, 0);
       } else {
         clearInterval(fadeInterval.current);
         audio.pause();
