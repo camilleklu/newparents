@@ -122,7 +122,7 @@ const Audio = () => {
       <div className="w-full h-6 bg-[#FFB041] mb-4" />
 
       {/* --- 2. HEADER PRINCIPAL --- */}
-      <div className="flex justify-between items-center mb-6 px-6">
+      <div className="flex justify-between items-center my-6 px-6">
         <h1 className="text-3xl font-bold text-gray-800">Audios</h1>
       </div>
 
@@ -136,7 +136,7 @@ const Audio = () => {
               ${
                 activeCategory === cat
                   ? "bg-[#FFEF63] shadow-md transform scale-105" // Actif
-                  : "bg-[#F6F3E7]"
+                  : "bg-[rgba(252,251,248,1)]"
               }`}
           >
             {cat}
