@@ -50,7 +50,7 @@ const ArticleDetail = () => {
         </div>
 
         {/* Corps de l'article */}
-        <div className="mt-8 text-gray-700 leading-relaxed text-lg pb-20">
+        <div className="mt-8 px-2 text-gray-700 leading-relaxed text-lg pb-20">
           {/* On affiche le contenu complet ici */}
           {article.content.split('\n').map((paragraph, index) => (
             <p key={index} className="mb-4 text-justify">
