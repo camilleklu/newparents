@@ -4,31 +4,26 @@ import { Home, BookOpen, Headphones, CalendarHeart } from 'lucide-react';
 
 const Navbar = () => {
   const navItems = [
-    { 
-      name: 'Accueil', 
+    { name: 'Accueil', 
       path: '/', 
-      icon: Home 
-    },
-    { 
-      name: 'Articles', 
+      icon: Home },
+
+    { name: 'Articles', 
       path: '/publications', 
-      icon: BookOpen 
-    },
-    { 
-      name: 'Audios', 
+      icon: BookOpen },
+
+    { name: 'Audios', 
       path: '/audios', 
-      icon: Headphones 
-    },
-    { 
-      name: 'Ateliers', 
+      icon: Headphones },
+
+    { name: 'Ateliers', 
       path: '/ateliers', 
-      icon: CalendarHeart 
-    },
+      icon: CalendarHeart },
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50">
-      <div className="bg-white px-6 py-3 rounded-t-[30px] shadow-[0_-5px_20px_rgba(0,0,0,0.06)] flex justify-between items-center h-20">
+    <nav className="fixed bottom-5 left-0 right-0 z-50">
+      <div className="bg-[rgba(252,251,248,1)] m-2 px-6 py-3 rounded-[999px] shadow-[0_-5px_20px_rgba(0,0,0,0.06)] flex justify-between items-center h-20">
         
         {navItems.map((item) => (
           <NavLink
@@ -47,7 +42,13 @@ const Navbar = () => {
                   className="mb-1"
                 />
                 
-                <span className={`h-1.5 w-1.5 rounded-full ${isActive ? 'bg-teal-600' : 'bg-transparent'}`} />
+                {/* MODIFICATION ICI : 
+                   L'expression {isActive && ...} signifie que si isActive est faux, 
+                   React ignore complètement ce qui suit et n'écrit rien dans le DOM.
+                */}
+                {isActive && (
+                  <span className="h-1.5 w-1.5 rounded-full bg-teal-600" />
+                )}
               </>
             )}
           </NavLink>

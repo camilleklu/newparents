@@ -145,8 +145,8 @@ const Audio = () => {
       </div>
 
       {/* --- 4. POPULAIRE (CARROUSEL Bicolore) --- */}
-      <div className="mb-8 mt-2">
-        <h2 className="text-xl font-normal text-black mb-4 px-6">Populaire</h2>
+      <div className="mb-6 mt-2">
+        <h2 className="text-xl font-semibold text-black mb-6 px-6">Populaire</h2>
 
         <div
           ref={scrollRef}
@@ -215,9 +215,9 @@ const Audio = () => {
         </div>
       </div>
 
-      {/* --- 5. LISTE DES SONS (Style gris et ondes Teal) --- */}
+      {/* --- 5. LISTE DES SONS (Style blanc cassé et ondes Teal) --- */}
       <div className="px-6">
-        <h2 className="text-xl font-normal text-black mb-4">Sons</h2>
+        <h2 className="text-xl font-semibold mb-6 text-black mb-4">Sons</h2>
         <div className="space-y-4">
           {filteredTracks.map((track) => {
             const isPlayingThis = currentTrack?.id === track.id;
@@ -227,7 +227,7 @@ const Audio = () => {
                 key={track.id}
                 onClick={() => handleTrackClick(track)}
                 // Fond GRIS (#E5E7EB correspond au gris de l'image) et très arrondi
-                className={`group bg-gray-200 p-3 rounded-full flex items-center gap-4 transition-all cursor-pointer ${
+                className={`group bg-[rgba(252,251,248,1)] shadow-[0_-5px_20px_rgba(0,0,0,0.06)] p-3 rounded-full flex items-center gap-4 transition-all cursor-pointer ${
                   isPlayingThis ? "ring-2 ring-[#75BDBC]" : ""
                 }`}
               >
