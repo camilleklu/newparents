@@ -18,9 +18,11 @@ const AtelierDetail = () => {
   }
 
   return (
-    <div className="bg-[#F7F5EA] min-h-screen pb-24 relative">
+    <div className="bg-[#F6F3E7] min-h-screen pb-24 relative">
+      <div className="w-full h-6 bg-[#FFB041] mb-4" />
+
       {/* Header Orange avec retour */}
-      <div className="bg-[#FFB041] px-6 py-6 rounded-b-[30px] shadow-sm mb-6 flex items-center gap-4">
+      <div className="px-4 py-4 mb-6 flex items-center gap-4">
         <button
           onClick={() => navigate(-1)}
           className="bg-white/20 p-2 rounded-full"
@@ -30,7 +32,7 @@ const AtelierDetail = () => {
         <h1 className="text-xl font-bold text-gray-900">Nos Ateliers</h1>
       </div>
 
-      <div className="px-6">
+      <div className="px-6 pb-24">
         {/* Titre */}
         <h2 className="text-2xl font-bold text-gray-900 mb-4">
           {workshop.title}
@@ -40,10 +42,6 @@ const AtelierDetail = () => {
         <p className="text-gray-600 mb-6 leading-relaxed">
           {workshop.description}
           <br />
-          <br />
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
-          risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec,
-          ultricies sed, dolor.
         </p>
 
         {/* Bloc Informations */}
@@ -65,11 +63,19 @@ const AtelierDetail = () => {
           </div>
         </div>
 
-        {/* Frame Google Map (Fake) */}
-        <div className="w-full h-48 bg-gray-300 rounded-xl flex items-center justify-center mb-8">
-          <span className="font-bold text-gray-600 text-xl">
-            frame google map
-          </span>
+        {/* --- GOOGLE MAP DYNAMIQUE --- */}
+        <div className="w-full h-48 bg-gray-200 rounded-2xl overflow-hidden mb-8 shadow-inner relative z-0">
+          <iframe
+            title="map"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            loading="lazy"
+            allowFullScreen
+            src={`https://maps.google.com/maps?q=${encodeURIComponent(
+              workshop.location
+            )}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+          />
         </div>
 
         {/* Bouton S'inscrire */}
