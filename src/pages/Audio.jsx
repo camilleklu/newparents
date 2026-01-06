@@ -16,6 +16,7 @@ const Audio = () => {
   const [centerIndex, setCenterIndex] = useState(0);
   const scrollRef = useRef(null);
   const audioRef = useRef(null);
+  const fadeInterval = useRef(null);
 
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -45,10 +46,10 @@ const Audio = () => {
 
   const togglePlayPause = () => {
     if (isPlaying) {
-      audioRef.current.pause();
+      fadeOut();
       setIsPlaying(false);
     } else {
-      audioRef.current.play();
+      fadeIn();
       setIsPlaying(true);
     }
   };
@@ -83,10 +84,52 @@ const Audio = () => {
     setCurrentTime(time);
   };
 
+  // --- FONCTIONS DE FONDU SONORE ---
+
+  const fadeIn = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (fadeInterval.current) clearInterval(fadeInterval.current);
+
+    audio.volume = 0;
+    audio.play();
+
+    fadeInterval.current = setInterval(() => {
+      if (audio.volume < 1) {
+        audio.volume = Math.min(audio.volume + 0.05, 1);
+      } else {
+        clearInterval(fadeInterval.current);
+      }
+    }, 50);
+  };
+
+  const fadeOut = (callback) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (fadeInterval.current) clearInterval(fadeInterval.current);
+
+    fadeInterval.current = setInterval(() => {
+      if (audio.volume > 0) {
+        audio.volume = Math.max(audio.volume - 0.05, 0);
+      } else {
+        clearInterval(fadeInterval.current);
+        audio.pause();
+        audio.volume = 1;
+
+        if (callback) callback();
+      }
+    }, 50);
+  };
+
   useEffect(() => {
     if (currentTrack && audioRef.current) {
       audioRef.current.src = currentTrack.src;
-      if (isPlaying) audioRef.current.play();
+
+      if (isPlaying) {
+        fadeIn();
+      }
     }
   }, [currentTrack]);
 

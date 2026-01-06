@@ -39,9 +39,11 @@ const Inscription = () => {
   if (!workshop) return null;
 
   return (
-    <div className="bg-[#F7F5EA] min-h-screen pb-10 relative">
+    <div className="bg-[#F6F3E7] min-h-screen pb-10 relative">
+      <div className="w-full h-6 bg-[#FFB041] mb-4" />
+
       {/* Header Orange */}
-      <div className="bg-[#FFB041] px-6 py-6 rounded-b-[30px] shadow-sm mb-8 flex items-center gap-4">
+      <div className="px-4 py-4 mb-8 flex items-center gap-4">
         <button
           onClick={() => navigate(-1)}
           className="bg-white/20 p-2 rounded-full"
@@ -52,7 +54,7 @@ const Inscription = () => {
       </div>
 
       <div className="px-6">
-        <div className="bg-[#FFFCF2] p-6 rounded-[30px] shadow-sm border border-orange-100">
+        <div className="bg-[#FFFCF2] p-6 rounded-[30px] shadow-lg border border-orange-100">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Inscription</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -64,7 +66,7 @@ const Inscription = () => {
                 type="text"
                 name="nom"
                 required
-                className="w-full bg-[#F0EFE6] rounded-xl p-3 border-none focus:ring-2 focus:ring-[#FFB041]"
+                className="w-full bg-[#F0EFE6] rounded-xl p-3 border-none shadow-inner focus:ring-2 focus:ring-[#FFB041]"
                 onChange={handleChange}
               />
             </div>
@@ -76,7 +78,7 @@ const Inscription = () => {
                 type="text"
                 name="prenom"
                 required
-                className="w-full bg-[#F0EFE6] rounded-xl p-3 border-none focus:ring-2 focus:ring-[#FFB041]"
+                className="w-full bg-[#F0EFE6] rounded-xl p-3 border-none shadow-inner focus:ring-2 focus:ring-[#FFB041]"
                 onChange={handleChange}
               />
             </div>
@@ -88,7 +90,7 @@ const Inscription = () => {
                 type="email"
                 name="email"
                 required
-                className="w-full bg-[#F0EFE6] rounded-xl p-3 border-none focus:ring-2 focus:ring-[#FFB041]"
+                className="w-full bg-[#F0EFE6] rounded-xl p-3 border-none shadow-inner focus:ring-2 focus:ring-[#FFB041]"
                 onChange={handleChange}
               />
             </div>
@@ -100,7 +102,7 @@ const Inscription = () => {
                 type="tel"
                 name="telephone"
                 required
-                className="w-full bg-[#F0EFE6] rounded-xl p-3 border-none focus:ring-2 focus:ring-[#FFB041]"
+                className="w-full bg-[#F0EFE6] rounded-xl p-3 border-none shadow-inner focus:ring-2 focus:ring-[#FFB041]"
                 onChange={handleChange}
               />
             </div>
