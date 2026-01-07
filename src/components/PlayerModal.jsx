@@ -12,9 +12,8 @@ const formatTime = (time) => {
   if (!time) return "00:00";
   const minutes = Math.floor(time / 60);
   const seconds = Math.floor(time % 60);
-  return `${minutes < 10 ? "0" : ""}${minutes}:${
-    seconds < 10 ? "0" : ""
-  }${seconds}`;
+  return `${minutes < 10 ? "0" : ""}${minutes}:${seconds < 10 ? "0" : ""
+    }${seconds}`;
 };
 
 const PlayerModal = ({
@@ -32,14 +31,29 @@ const PlayerModal = ({
   toggleLoop,
 }) => {
   // --- LOGIQUE DU SWIPE (Suivi du doigt) ---
-  const [dragY, setDragY] = useState(0); // De combien de pixels on a glissé vers le bas
+  const [dragY, setDragY] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const startY = useRef(0); // Point de départ du doigt
+  const startY = useRef(0);
+  const videoRef = useRef(null);
 
   // Réinitialiser la position quand le modal s'ouvre
   useEffect(() => {
     if (isOpen) setDragY(0);
   }, [isOpen]);
+
+  // --- LOGIQUE VIDÉO ---
+  // Synchronise la lecture de la vidéo avec l'état 'isPlaying' de l'audio
+  useEffect(() => {
+    if (videoRef.current) {
+      if (isPlaying && isOpen) {
+        videoRef.current.play().catch((error) => {
+          console.log("Auto-play bloqué ou erreur vidéo:", error);
+        });
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  }, [isPlaying, isOpen, track]);
 
   const handleTouchStart = (e) => {
     startY.current = e.touches[0].clientY;
@@ -49,7 +63,6 @@ const PlayerModal = ({
   const handleTouchMove = (e) => {
     const currentY = e.touches[0].clientY;
     const diff = currentY - startY.current;
-    // On autorise seulement le glissement vers le bas (diff > 0)
     if (diff > 0) {
       setDragY(diff);
     }
@@ -57,11 +70,9 @@ const PlayerModal = ({
 
   const handleTouchEnd = () => {
     setIsDragging(false);
-    // SEUIL : Si on a glissé de plus de 150px, on ferme
     if (dragY > 150) {
       onClose();
     } else {
-      // Sinon, on remet à 0 (effet rebond)
       setDragY(0);
     }
   };
@@ -71,36 +82,46 @@ const PlayerModal = ({
 
   return (
     <div
-      // ÉVÉNEMENTS TACTILES AJOUTÉS ICI
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
-      // STYLE DYNAMIQUE
-      className={`fixed inset-0 z-[60] flex flex-col bg-white overflow-hidden`}
+      className={`fixed inset-0 z-[60] flex flex-col bg-black overflow-hidden`}
       style={{
-        // Si c'est ouvert, on applique le décalage du doigt (dragY).
-        // Si c'est fermé, on le pousse à 100% vers le bas.
         transform: isOpen ? `translateY(${dragY}px)` : "translateY(100%)",
-        // Transition fluide seulement quand on ne touche PAS (pour le rebond)
         transition: isDragging
           ? "none"
           : "transform 0.5s cubic-bezier(0.32, 0.72, 0, 1)",
       }}
     >
-      {/* --- IMAGE DE FOND --- */}
-      {track.img ? (
-        <img
-          src={track.img}
-          alt={track.title}
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      ) : (
-        <div className="absolute inset-0 bg-teal-600" />
-      )}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/90" />
+      {/* --- ARRIÈRE-PLAN (IMAGE ET/OU VIDÉO) --- */}
+      <div className="absolute inset-0 w-full h-full">
+        {/* Image de fond par défaut (toujours présente) */}
+        {track.img && (
+          <img
+            src={track.img}
+            alt={track.title}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        )}
 
-      {/* --- CONTENU --- */}
-      <div className="relative z-10 flex flex-col h-full text-white">
+        {/* Vidéo : S'affiche par-dessus l'image si elle existe et que la modal est ouverte */}
+        {track.video && isOpen && (
+          <video
+            ref={videoRef}
+            src={track.video}
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-10"
+          />
+        )}
+
+        {/* Overlay sombre pour garantir la lisibilité du texte (Z-index supérieur à la vidéo) */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/90 z-20" />
+      </div>
+
+      {/* --- CONTENU UI (Z-index 30 pour être au-dessus de tout) --- */}
+      <div className="relative z-30 flex flex-col h-full text-white">
         {/* Header avec bouton fermer */}
         <div className="pt-12 pb-6 px-6 flex justify-between items-center">
           <button
@@ -109,10 +130,9 @@ const PlayerModal = ({
           >
             <ChevronDown size={36} />
           </button>
-          <span className="text-xs font-bold tracking-widest text-white/60 uppercase">
+          <span className="font-poppins text-xs font-bold tracking-widest text-white/60 uppercase">
             En lecture
           </span>
-          {/* BOUTON LOOP AJOUTÉ ICI EN HAUT À DROITE (Optionnel, ou en bas) */}
           <div className="w-8"></div>
         </div>
 
@@ -122,10 +142,12 @@ const PlayerModal = ({
         {/* Partie Basse */}
         <div className="px-8 pb-16">
           <div className="mb-8">
-            <h2 className="text-3xl font-bold mb-2 leading-tight text-white shadow-sm">
+            <h2 className="font-schoolbell text-4xl font-bold mb-2 leading-tight text-white drop-shadow-lg">
               {track.title}
             </h2>
-            <p className="text-lg text-white/70 font-medium">{track.author}</p>
+            <p className="font-poppins text-lg text-white/70 font-medium">
+              {track.category}
+            </p>
           </div>
 
           {/* Barre de lecture */}
@@ -136,7 +158,7 @@ const PlayerModal = ({
               max={duration || 0}
               value={currentTime || 0}
               onChange={onSeek}
-              className="absolute w-full h-6 opacity-0 cursor-pointer z-20 -top-2"
+              className="absolute w-full h-6 opacity-0 cursor-pointer z-50 -top-2"
             />
             <div className="w-full h-1.5 bg-white/30 rounded-full overflow-hidden relative">
               <div
@@ -151,19 +173,16 @@ const PlayerModal = ({
           </div>
 
           {/* --- CONTRÔLES --- */}
-          {/* J'ai réorganisé pour ajouter le bouton Loop à gauche */}
           <div className="flex justify-between items-center">
             {/* BOUTON LOOP */}
             <button
               onClick={toggleLoop}
-              className={`transition-colors ${
-                isLooping ? "text-teal-400" : "text-white/40 hover:text-white"
-              }`}
+              className={`transition-colors ${isLooping ? "text-[#FFEF63]" : "text-white/40 hover:text-white"
+                }`}
             >
               <Repeat size={24} />
-              {/* Petit point pour indiquer que c'est actif */}
               {isLooping && (
-                <div className="mx-auto w-1 h-1 bg-teal-400 rounded-full mt-1" />
+                <div className="mx-auto w-1 h-1 bg-[#FFEF63] rounded-full mt-1" />
               )}
             </button>
 
@@ -175,10 +194,10 @@ const PlayerModal = ({
               <SkipBack size={32} fill="currentColor" />
             </button>
 
-            {/* PLAY / PAUSE (Plus grand) */}
+            {/* PLAY / PAUSE */}
             <button
               onClick={onPlayPause}
-              className="w-20 h-20 bg-white text-teal-900 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.3)] transform active:scale-95 transition-all"
+              className="w-20 h-20 bg-white text-[#2CADA4] rounded-full flex items-center justify-center shadow-2xl transform active:scale-95 transition-all"
             >
               {isPlaying ? (
                 <Pause size={32} fill="currentColor" />
@@ -195,8 +214,7 @@ const PlayerModal = ({
               <SkipForward size={32} fill="currentColor" />
             </button>
 
-            {/* ESPACE VIDE À DROITE (Pour équilibrer le bouton Loop) */}
-            {/* Si tu veux un bouton "Partager" ou "Like", tu peux le mettre ici */}
+            {/* ESPACE D'ÉQUILIBRE */}
             <div className="w-6" />
           </div>
         </div>

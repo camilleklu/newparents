@@ -163,10 +163,10 @@ const Audio = () => {
       />
 
       {/* Header Orange Déco */}
-      <div className="w-full h-6 bg-[#FFB041] mb-4" />
+      <div className="w-full h-6 bg-[#F7AB42] mb-4" />
 
       <div className="px-6 my-8">
-        <h1 className="text-3xl font-bold text-gray-800">Audios</h1>
+        <h1 className="font-schoolbell text-4xl font-bold text-gray-800">Audios</h1>
       </div>
 
       {/* Filtres Catégories */}
@@ -175,8 +175,8 @@ const Audio = () => {
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-6 py-3 rounded-full text-sm font-semibold transition-all whitespace-nowrap text-gray-800
-              ${activeCategory === cat ? "bg-[#FFEF63] shadow-md scale-105" : "bg-white"}`}
+            className={`font-poppins px-6 py-3 rounded-full text-sm font-semibold transition-all whitespace-nowrap text-gray-800
+              ${activeCategory === cat ? "bg-[#FFD406] shadow-md scale-105" : "bg-white"}`}
           >
             {cat}
           </button>
@@ -185,7 +185,7 @@ const Audio = () => {
 
       {/* Carrousel Populaire */}
       <div className="mb-8 mt-2">
-        <h2 className="text-xl font-semibold text-black mb-8 px-6">Populaire</h2>
+        <h2 className="font-schoolbell text-2xl font-semibold text-black mb-8 px-6">Populaire</h2>
         <div
           ref={scrollRef}
           onScroll={handleScroll}
@@ -206,7 +206,7 @@ const Audio = () => {
                 </>
               )}
               <div className={`relative z-10 transition-opacity ${index === centerIndex ? "opacity-100" : "opacity-0"}`}>
-                <h3 className="font-bold text-white leading-tight drop-shadow-md">{track.title}</h3>
+                <h3 className="font-poppins font-bold text-white leading-tight drop-shadow-md">{track.title}</h3>
               </div>
             </div>
           ))}
@@ -215,7 +215,7 @@ const Audio = () => {
 
       {/* Liste des Sons avec AudioCard */}
       <div className="px-6">
-        <h2 className="text-xl font-semibold text-black mb-8">Sons</h2>
+        <h2 className="font-schoolbell text-2xl font-semibold text-black mb-8">Sons</h2>
         <div className="space-y-4">
           {filteredTracks.map((track) => (
             <AudioCard 

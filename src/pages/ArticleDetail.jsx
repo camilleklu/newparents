@@ -13,7 +13,7 @@ const ArticleDetail = () => {
   return (
     <div className="pb-32 min-h-screen bg-[#F7F5EA]">
       {/* --- 1. BARRE ORANGE DU HAUT --- */}
-      <div className="w-full h-6 bg-[#FFB041] mb-4" />
+      <div className="w-full h-6 bg-[#F7AB42] mb-4" />
 
       <div className="px-4 py-4 mb-6 flex items-center gap-4">
         <button
@@ -22,7 +22,7 @@ const ArticleDetail = () => {
         >
           <ChevronLeft size={24} className="text-gray-900" />
         </button>
-        <h1 className="text-xl font-bold text-gray-900">Publications</h1>
+        <h1 className="font-schoolbell text-2xl font-bold text-gray-900">Publications</h1>
       </div>
 
       <div className="w-full h-72">
@@ -36,21 +36,21 @@ const ArticleDetail = () => {
 
       {/* Contenu de l'article */}
       <div className="px-6 mt-6 z-10">
-        <span className="bg-[#FFEF63] text-gray-800 text-xs font-bold px-4 py-1.5 rounded-full shadow-sm">
+        <span className="font-poppins bg-[#FFD406] text-gray-800 text-xs font-bold px-4 py-1.5 rounded-full shadow-sm">
           {article.category}
         </span>
         
-        <h1 className="text-3xl font-black mt-4 text-center">
+        <h1 className="font-schoolbell text-4xl font-black mt-4 text-center">
           {article.title}
         </h1>
 
         <div className="flex justify-around mt-4 text-sm text-gray-500 font-medium">
-          <div className="flex items-center gap-1">
-            <User size={16} className="text-[#75BDBC]" />
+          <div className="font-poppins flex items-center gap-1">
+            <User size={16} className="text-[#2CADA4]" />
             {article.author}
           </div>
-          <div className="flex items-center gap-1">
-            <Calendar size={16} className="text-[#75BDBC]" />
+          <div className="font-poppins flex items-center gap-1">
+            <Calendar size={16} className="text-[#2CADA4]" />
             {article.date}
           </div>
         </div>
@@ -59,7 +59,7 @@ const ArticleDetail = () => {
         <div className="mt-8 px-2 text-gray-700 leading-relaxed text-lg pb-20">
           {/* On affiche le contenu complet ici */}
           {article.content.split('\n').map((paragraph, index) => (
-            <p key={index} className="mb-4 text-justify">
+            <p key={index} className="font-poppins mb-4 text-justify">
               {paragraph}
             </p>
           ))}

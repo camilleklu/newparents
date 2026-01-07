@@ -12,13 +12,13 @@ const ArticleCardHome = ({ article }) => {
         
         {/* Contenu à droite */}
         <div className="flex flex-col justify-center">
-          <span className="bg-[#FFEF63] text-gray-800 text-[10px] font-bold px-3 py-1 rounded-full w-fit mb-2">
+          <span className="font-poppins bg-[#FFD406] text-gray-800 text-[10px] font-bold px-3 py-1 rounded-full w-fit mb-2">
             {article.category}
           </span>
-          <h3 className="font-bold text-gray-800 text-sm leading-tight mb-1">
+          <h3 className="font-schoolbell font-bold text-gray-800 text-sm leading-tight mb-1">
             {article.title}
           </h3>
-          <p className="text-gray-400 text-[11px] line-clamp-2">
+          <p className="font-poppins text-gray-400 text-[11px] line-clamp-2">
             {article.excerpt}
           </p>
         </div>

@@ -19,7 +19,7 @@ const ArticleCard = ({ article }) => {
                         className="w-full h-full object-cover"
                     />
                     <div className="absolute top-4 left-4">
-                        <span className="bg-[#FFEF63] text-gray-800 text-xs font-bold px-3 py-1 rounded-full">
+                        <span className="font-poppins bg-[#FFD406] text-gray-800 text-xs font-bold px-3 py-1 rounded-full">
                             {article.category}
                         </span>
                     </div>
@@ -27,25 +27,25 @@ const ArticleCard = ({ article }) => {
 
                 {/* Contenu de la card */}
                 <div className="p-6">
-                    <h3 className="text-xl font-bold text-gray-800 mb-2 leading-tight">
+                    <h3 className="font-schoolbell text-xl font-bold text-gray-800 mb-2 leading-tight">
                         {article.title}
                     </h3>
                     <div className="flex items-center justify-between gap-4 text-xs text-gray-400 mb-2">
-                        <div className="flex items-center gap-1">
-                            <User size={14} className="text-[#75BDBC]" />
+                        <div className="font-poppins flex items-center gap-1">
+                            <User size={14} className="text-[#2CADA4]" />
                             {article.author}
                         </div>
-                        <div className="flex items-center gap-1">
-                            <Calendar size={14} className="text-[#75BDBC]" />
+                        <div className="font-poppins flex items-center gap-1">
+                            <Calendar size={14} className="text-[#2CADA4]" />
                             {article.date}
                         </div>
                     </div>
-                    <p className="text-gray-600 text-sm line-clamp-2 mb-4">
+                    <p className="font-poppins text-gray-600 text-sm line-clamp-2 mb-4">
                         {article.excerpt}
                     </p>
 
                     <button
-                        className="flex gap-1 text-[#63B6B4] font-bold text-sm items-center"
+                        className="font-poppins flex gap-1 text-[#2CADA4] font-bold text-sm items-center"
                     >
                         Lire la suite
                         <ArrowRight size={10} />

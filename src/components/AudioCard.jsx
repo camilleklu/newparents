@@ -7,7 +7,7 @@ const AudioCard = ({ track, isPlaying, isCurrentTrack, onClick, audioRef }) => {
     <div
       onClick={() => onClick(track)}
       className={`group bg-white p-3 rounded-full flex items-center gap-4 transition-all cursor-pointer shadow-lg ${
-        isCurrentTrack ? "ring-2 ring-[#75BDBC]" : ""
+        isCurrentTrack ? "ring-2 ring-[#2CADA4]" : ""
       }`}
     >
       {/* Icône de lecture ou indicateur visuel */}
@@ -21,13 +21,13 @@ const AudioCard = ({ track, isPlaying, isCurrentTrack, onClick, audioRef }) => {
 
       {/* Titre et Waveform */}
       <div className="flex-1 flex flex-col justify-center overflow-hidden">
-        <h4 className="font-medium text-black text-sm">{track.title}</h4>
+        <h4 className="font-poppins font-medium text-black text-sm">{track.title}</h4>
         <div className="h-6 w-full max-w-[200px]">
           <TrackWaveform 
             isPlaying={isCurrentTrack && isPlaying} 
             audioRef={audioRef} 
             trackId={track.id} 
-            color="#75BDBC" 
+            color="#2CADA4" 
           />
         </div>
       </div>

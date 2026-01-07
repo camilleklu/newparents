@@ -37,34 +37,34 @@ const AtelierCard = ({ workshop, className = "" }) => {
 
       {/* --- CONTENU TEXTE --- */}
       <div className="p-5 flex-1 flex flex-col">
-        <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-1">
+        <h3 className="font-schoolbell text-2xl font-bold text-gray-800 mb-2 line-clamp-1">
           {workshop.title}
         </h3>
 
-        <p className="text-sm text-gray-500 line-clamp-3 mb-4 flex-1">
+        <p className="font-poppins text-sm text-gray-500 line-clamp-3 mb-4 flex-1">
           {workshop.description}
         </p>
 
         {/* Infos */}
         <div className="space-y-2 text-sm text-gray-600 mb-6">
           <div className="flex items-center gap-2">
-            <Calendar size={16} className="text-[#75BDBC]" />
-            <span>{workshop.date}</span>
+            <Calendar size={16} className="text-[#2CADA4]" />
+            <span className="font-poppins">{workshop.date}</span>
           </div>
           <div className="flex items-center gap-2">
-            <Clock size={16} className="text-[#75BDBC]" />
-            <span>{workshop.time}</span>
+            <Clock size={16} className="text-[#2CADA4]" />
+            <span className="font-poppins">{workshop.time}</span>
           </div>
           <div className="flex items-center gap-2">
-            <MapPin size={16} className="text-[#75BDBC]" />
-            <span>{workshop.location}</span>
+            <MapPin size={16} className="text-[#2CADA4]" />
+            <span className="font-poppins">{workshop.location}</span>
           </div>
         </div>
 
         {/* Bouton */}
         <Link
           to={`/ateliers/${workshop.id}`}
-          className="w-full bg-[#FFB041] text-gray-900 font-bold py-3 rounded-full text-center hover:bg-[#ffaa30] transition-colors shadow-md"
+          className="font-poppins w-full bg-[#F7AB42] text-gray-900 font-bold py-3 rounded-full text-center hover:bg-[#ffaa30] transition-colors shadow-md"
         >
           Voir les détails
         </Link>
