@@ -1,11 +1,12 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { Calendar, User } from "lucide-react";
+import { useParams, useNavigate } from "react-router-dom";
+import { Calendar, User, ChevronLeft } from "lucide-react";
 import { articleList } from "../data/publications";
 
 const ArticleDetail = () => {
   const { id } = useParams();
   const article = articleList.find((art) => art.id === parseInt(id));
+    const navigate = useNavigate();
 
   if (!article) return null;
 
@@ -14,9 +15,14 @@ const ArticleDetail = () => {
       {/* --- 1. BARRE ORANGE DU HAUT --- */}
       <div className="w-full h-6 bg-[#FFB041] mb-4" />
 
-      {/* --- 2. HEADER --- */}
-      <div className="flex justify-between items-center px-6 my-6">
-        <h1 className="text-3xl font-bold text-gray-800">Publications</h1>
+      <div className="px-4 py-4 mb-6 flex items-center gap-4">
+        <button
+          onClick={() => navigate(-1)}
+          className="bg-white/20 p-2 rounded-full"
+        >
+          <ChevronLeft size={24} className="text-gray-900" />
+        </button>
+        <h1 className="text-xl font-bold text-gray-900">Publications</h1>
       </div>
 
       <div className="w-full h-72">
@@ -40,11 +46,11 @@ const ArticleDetail = () => {
 
         <div className="flex justify-around mt-4 text-sm text-gray-500 font-medium">
           <div className="flex items-center gap-1">
-            <User size={16} className="text-[#63B6B4]" />
+            <User size={16} className="text-[#75BDBC]" />
             {article.author}
           </div>
           <div className="flex items-center gap-1">
-            <Calendar size={16} className="text-[#63B6B4]" />
+            <Calendar size={16} className="text-[#75BDBC]" />
             {article.date}
           </div>
         </div>
