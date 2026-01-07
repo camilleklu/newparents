@@ -13,13 +13,13 @@ const AtelierDetail = () => {
   // Sécurité si l'atelier n'existe pas ou est complet entre temps
   if (!workshop || workshop.spots === 0) {
     return (
-      <div className="p-10 text-center">Cet atelier n'est plus disponible.</div>
+      <div className="font-schoolbell p-10 text-center">Cet atelier n'est plus disponible.</div>
     );
   }
 
   return (
     <div className="bg-[#F6F3E7] min-h-screen pb-24 relative">
-      <div className="w-full h-6 bg-[#FFB041] mb-4" />
+      <div className="w-full h-6 bg-[#F7AB42] mb-4" />
 
       {/* Header Orange avec retour */}
       <div className="px-4 py-4 mb-6 flex items-center gap-4">
@@ -29,36 +29,36 @@ const AtelierDetail = () => {
         >
           <ChevronLeft size={24} className="text-gray-900" />
         </button>
-        <h1 className="text-xl font-bold text-gray-900">Nos Ateliers</h1>
+        <h1 className="font-schoolbell text-2xl font-bold text-gray-900">Nos Ateliers</h1>
       </div>
 
       <div className="px-6 pb-24">
         {/* Titre */}
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
+        <h2 className="font-schoolbell text-3xl font-bold text-gray-900 mb-4">
           {workshop.title}
         </h2>
 
         {/* Description */}
-        <p className="text-gray-600 mb-6 leading-relaxed">
+        <p className="font-poppins text-gray-600 mb-6 leading-relaxed">
           {workshop.description}
           <br />
         </p>
 
         {/* Bloc Informations */}
         <div className="mb-6">
-          <h3 className="font-bold text-lg mb-3">Informations</h3>
+          <h3 className="font-schoolbell font-bold text-xl mb-3">Informations</h3>
           <div className="space-y-3 text-gray-700">
             <div className="flex items-center gap-3">
-              <Calendar size={20} className="text-gray-900" />
-              <span>{workshop.date}</span>
+              <Calendar size={20} className="text-[#2CADA4]" />
+              <span className="font-poppins">{workshop.date}</span>
             </div>
             <div className="flex items-center gap-3">
-              <Clock size={20} className="text-gray-900" />
-              <span>{workshop.time}</span>
+              <Clock size={20} className="text-[#2CADA4]" />
+              <span className="font-poppins">{workshop.time}</span>
             </div>
             <div className="flex items-center gap-3">
-              <MapPin size={20} className="text-gray-900" />
-              <span>{workshop.location}</span>
+              <MapPin size={20} className="text-[#2CADA4]" />
+              <span className="font-poppins">{workshop.location}</span>
             </div>
           </div>
         </div>
@@ -81,11 +81,11 @@ const AtelierDetail = () => {
         {/* Bouton S'inscrire */}
         <Link
           to={`/ateliers/${id}/inscription`}
-          className="block w-full bg-[#FFB041] text-gray-900 font-bold py-4 rounded-full text-center shadow-lg hover:shadow-xl transition-all"
+          className="font-poppins block w-full bg-[#F7AB42] text-gray-900 font-bold py-4 rounded-full text-center shadow-lg hover:shadow-xl transition-all"
         >
           S'inscrire à l'atelier
         </Link>
-        <p className="text-center text-sm text-gray-500 mt-2">
+        <p className="font-poppins text-center text-sm text-gray-500 mt-2">
           Plus que {workshop.spots} places disponibles !
         </p>
       </div>

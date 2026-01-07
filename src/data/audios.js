@@ -1,6 +1,7 @@
 import ambiance1 from '../assets/ambiances/skz-chk-chk-boom.mp3'; 
 import podcast1 from '../assets/podcast/kitten-skz.mp3';
 import meme from '../assets/thumbnail/meme.png';
+import funny from '../assets/video/funny_skz.mp4';
 
 export const audioList = [
   { 
@@ -9,6 +10,7 @@ export const audioList = [
     category: "Ambiances", 
     src: ambiance1, 
     img : meme,
+    video : funny,
   },
   { 
     id: 2, 
@@ -16,6 +18,7 @@ export const audioList = [
     category: "Podcast", 
     src: podcast1, 
     img : meme,
+    video : "",
   },
   { 
     id: 3, 
@@ -23,6 +26,7 @@ export const audioList = [
     category: "Podcast", 
     src: podcast1, 
     img : meme,
+    video : "",
   },
   { 
     id: 4, 
@@ -30,6 +34,7 @@ export const audioList = [
     category: "Podcast", 
     src: podcast1, 
     img : meme,
+    video : "",
   },
   { 
     id: 5, 
@@ -37,6 +42,7 @@ export const audioList = [
     category: "Autre",
     src: podcast1, 
     img : meme,
+    video : "",
   },
 ];
 

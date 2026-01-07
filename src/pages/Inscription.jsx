@@ -40,7 +40,7 @@ const Inscription = () => {
 
   return (
     <div className="bg-[#F6F3E7] min-h-screen pb-10 relative">
-      <div className="w-full h-6 bg-[#FFB041] mb-4" />
+      <div className="w-full h-6 bg-[#F7AB42] mb-4" />
 
       {/* Header Orange */}
       <div className="px-4 py-4 mb-8 flex items-center gap-4">
@@ -50,16 +50,16 @@ const Inscription = () => {
         >
           <ChevronLeft size={24} className="text-gray-900" />
         </button>
-        <h1 className="text-xl font-bold text-gray-900">Inscription</h1>
+        <h1 className="font-schoolbell text-xl font-bold text-gray-900">Inscription</h1>
       </div>
 
       <div className="px-6">
         <div className="bg-[#FFFCF2] p-6 rounded-[30px] shadow-lg border border-orange-100">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Inscription</h2>
+          <h2 className="font-schoolbell text-2xl font-bold text-gray-900 mb-6">Inscription</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1 ml-1">
+              <label className="font-poppins block text-sm font-bold text-gray-700 mb-1 ml-1">
                 Nom
               </label>
               <input
@@ -71,7 +71,7 @@ const Inscription = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1 ml-1">
+              <label className="font-poppins block text-sm font-bold text-gray-700 mb-1 ml-1">
                 Prénom
               </label>
               <input
@@ -83,7 +83,7 @@ const Inscription = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1 ml-1">
+              <label className="font-poppins block text-sm font-bold text-gray-700 mb-1 ml-1">
                 Email
               </label>
               <input
@@ -95,7 +95,7 @@ const Inscription = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-gray-700 mb-1 ml-1">
+              <label className="font-poppins block text-sm font-bold text-gray-700 mb-1 ml-1">
                 Telephone
               </label>
               <input
@@ -110,7 +110,7 @@ const Inscription = () => {
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full bg-[#FFB041] text-gray-900 font-bold py-4 rounded-full shadow-md hover:shadow-lg transition-transform active:scale-95"
+                className="font-poppins w-full bg-[#F7AB42] text-gray-900 font-bold py-4 rounded-full shadow-md hover:shadow-lg transition-transform active:scale-95"
               >
                 Confirmation de l'inscription
               </button>

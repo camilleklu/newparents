@@ -15,11 +15,11 @@ const Publications = () => {
   return (
     <div className="pb-32 min-h-screen bg-[#F7F5EA]">
       {/* --- 1. BARRE ORANGE DU HAUT --- */}
-      <div className="w-full h-6 bg-[#FFB041] mb-4" />
+      <div className="w-full h-6 bg-[#F7AB42] mb-4" />
 
       {/* --- 2. HEADER --- */}
       <div className="flex justify-between items-center px-6 my-8">
-        <h1 className="text-3xl font-bold text-gray-800">Publications</h1>
+        <h1 className="font-schoolbell text-3xl font-bold text-gray-800">Publications</h1>
       </div>
 
       {/* --- 3. FILTRES --- */}
@@ -28,10 +28,10 @@ const Publications = () => {
           <button
             key={cat}
             onClick={() => setActiveCategory(cat)}
-            className={`px-6 py-3 rounded-full text-sm font-semibold transition-all whitespace-nowrap
+            className={`font-poppins px-6 py-3 rounded-full text-sm font-semibold transition-all whitespace-nowrap
               ${
                 activeCategory === cat
-                  ? "bg-[#FFEF63] shadow-md transform scale-105 text-gray-800"
+                  ? "bg-[#FFD406] shadow-md transform scale-105 text-gray-800"
                   : "bg-[rgba(252,251,248,1)]"
               }`}
           >

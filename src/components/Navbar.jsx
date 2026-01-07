@@ -31,7 +31,7 @@ const Navbar = () => {
             to={item.path}
             className={({ isActive }) => `
               flex flex-col items-center justify-center w-16 transition-all duration-300 ease-in-out
-              ${isActive ? 'text-teal-600 transform -translate-y-1' : 'text-gray-400 hover:text-gray-500'}
+              ${isActive ? 'text-[#2CADA4] transform -translate-y-1' : 'text-gray-400 hover:text-gray-500'}
             `}
           >
             {({ isActive }) => (
@@ -47,7 +47,7 @@ const Navbar = () => {
                    React ignore complètement ce qui suit et n'écrit rien dans le DOM.
                 */}
                 {isActive && (
-                  <span className="h-1.5 w-1.5 rounded-full bg-teal-600" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#2CADA4]" />
                 )}
               </>
             )}

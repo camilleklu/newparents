@@ -9,12 +9,12 @@ const AudioCardHome = ({ audio, onClick }) => {
           <img src={audio.img} alt={audio.title} className="w-full h-full object-cover" />
         </div>
         <div>
-          <h4 className="font-bold text-gray-800 text-sm">{audio.title}</h4>
-          <p className="text-gray-400 text-xs">{audio.duration || "10 min"}</p>
+          <h4 className="font-poppins font-bold text-gray-800 text-sm">{audio.title}</h4>
+          <p className="font-poppins text-gray-400 text-xs">{audio.duration || "10 min"}</p>
         </div>
       </div>
-      <div className="w-10 h-10 bg-[#E8F4F4] rounded-full flex items-center justify-center text-[#75BDBC]">
-        <Play size={18} fill="currentColor" />
+      <div className="w-10 h-10 bg-[#E8F4F4] rounded-full flex items-center justify-center text-[#2CADA4]">
+        <Play size={18} fill="#2CADA4" />
       </div>
     </div>
   );

@@ -22,9 +22,9 @@ const Ateliers = () => {
     <div className="bg-[#F6F3E7] h-screen pb-24 relative flex flex-col overflow-hidden">
       {/* HEADER */}
       <div>
-        <div className="w-full h-6 bg-[#FFB041]" />
+        <div className="w-full h-6 bg-[#F7AB42]" />
         <div className="px-6 my-8">
-          <h1 className="text-3xl font-bold text-gray-800">Nos Ateliers</h1>
+          <h1 className="font-schoolbell text-4xl font-bold text-gray-800">Nos Ateliers</h1>
         </div>
       </div>
 
@@ -58,7 +58,7 @@ const Ateliers = () => {
             })}
           </div>
         ) : (
-          <div className="text-center text-gray-500">Aucun atelier disponible.</div>
+          <div className="font-schoolbelltext-center text-gray-500">Aucun atelier disponible.</div>
         )}
 
         {/* POINTS INDICATEURS */}
