@@ -7,11 +7,13 @@ import AtelierDetail from "./pages/AtelierDetail.jsx";
 import Inscription from "./pages/Inscription.jsx";
 import Navbar from "./components/Navbar.jsx";
 import ArticleDetail from "./pages/ArticleDetail.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 import "./App.css";
 
 function App() {
   return (
     <>
+    <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/publications" element={<Publications />} />
