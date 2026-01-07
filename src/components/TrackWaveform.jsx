@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useMemo } from 'react';
 
-// --- GESTIONNAIRE AUDIO GLOBAL (Hors du composant) ---
-// Ces variables existent en dehors du cycle de vie de React
-// pour ne pas être effacées quand vous changez de musique.
+// Variables globales pour maintenir le contexte entre les rendus
 let audioContext = null;
 let analyser = null;
 let mediaSource = null;
@@ -11,39 +9,40 @@ const TrackWaveform = ({ isPlaying, audioRef, trackId, color = '#75BDBC' }) => {
   const canvasRef = useRef(null);
   const animationRef = useRef(null);
 
-  // 1. LOGIQUE DYNAMIQUE (Quand ça joue)
   useEffect(() => {
+    // On ne lance la logique que si la piste est active et que le canvas est prêt
     if (isPlaying && audioRef.current && canvasRef.current) {
       
-      // A. Initialisation sécurisée du Contexte Audio
-      const initAudio = () => {
-        // Si le contexte n'existe pas, on le crée
-        if (!audioContext) {
-          audioContext = new (window.AudioContext || window.webkitAudioContext)();
-        }
+      const initAudio = async () => {
+        try {
+          if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+          }
 
-        // Si l'analyseur n'existe pas, on le crée
-        if (!analyser) {
-          analyser = audioContext.createAnalyser();
-          analyser.fftSize = 128; // 64 barres environ
-        }
+          // TRÈS IMPORTANT : Les navigateurs bloquent souvent l'audio au démarrage.
+          // On force la reprise si le contexte est en pause.
+          if (audioContext.state === 'suspended') {
+            await audioContext.resume();
+          }
 
-        // LE POINT CRITIQUE : On ne connecte la source que SI elle n'existe pas déjà
-        if (!mediaSource) {
-          try {
+          if (!analyser) {
+            analyser = audioContext.createAnalyser();
+            analyser.fftSize = 128;
+          }
+
+          // Re-connexion de la source si nécessaire
+          if (!mediaSource) {
             mediaSource = audioContext.createMediaElementSource(audioRef.current);
             mediaSource.connect(analyser);
             analyser.connect(audioContext.destination);
-          } catch (e) {
-            // Si erreur "already connected", on l'ignore car c'est bon signe : c'est déjà branché !
-            console.log("Source audio déjà connectée, reprise du flux existant.");
           }
+        } catch (e) {
+          console.log("Audio node déjà connecté ou erreur d'init :", e.message);
         }
       };
 
       initAudio();
 
-      // B. La boucle d'animation
       const draw = () => {
         if (!canvasRef.current || !analyser) return;
 
@@ -56,21 +55,17 @@ const TrackWaveform = ({ isPlaying, audioRef, trackId, color = '#75BDBC' }) => {
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Paramètres de style (comme Vudio)
-        const barWidth = (canvas.width / bufferLength) * 2; 
+        const barWidth = (canvas.width / bufferLength) * 2.5; 
         let barHeight;
         let x = 0;
 
-        // Dessin des barres
         for (let i = 0; i < bufferLength; i++) {
-          // On booste un peu la hauteur pour que ce soit joli
+          // Normalisation de la hauteur
           barHeight = (dataArray[i] / 255) * canvas.height; 
 
           ctx.fillStyle = color;
-          
-          // Dessin de bas en haut
-          // (x, y, largeur, hauteur)
-          ctx.fillRect(x, canvas.height - barHeight, barWidth - 1, barHeight);
+          // Dessin avec bords arrondis (optionnel)
+          ctx.fillRect(x, canvas.height - barHeight, barWidth - 2, barHeight);
 
           x += barWidth;
         }
@@ -78,42 +73,29 @@ const TrackWaveform = ({ isPlaying, audioRef, trackId, color = '#75BDBC' }) => {
         animationRef.current = requestAnimationFrame(draw);
       };
 
-      // Lancer l'animation
       draw();
     }
 
-    // Nettoyage quand on met pause ou change de piste
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isPlaying, audioRef, color]);
+  }, [isPlaying, audioRef, color, trackId]); // Ajout de trackId pour trigger le changement
 
-  // 2. LOGIQUE STATIQUE (Fixe pour les autres pistes)
+  // Rendu statique si la piste ne joue pas
   const staticBars = useMemo(() => {
     const pseudoRandom = (seed) => {
       const x = Math.sin(seed) * 10000;
       return x - Math.floor(x);
     };
-
-    return Array.from({ length: 30 }).map((_, i) => {
-      // Hauteur fixe basée sur l'ID
-      return Math.floor(pseudoRandom(trackId * 100 + i) * 80 + 10); 
-    });
+    return Array.from({ length: 30 }).map((_, i) => 
+      Math.floor(pseudoRandom(trackId * 100 + i) * 80 + 10)
+    );
   }, [trackId]);
 
-  // --- RENDU ---
-
   if (isPlaying) {
-    return (
-      <canvas 
-        ref={canvasRef} 
-        width={200}
-        height={50}
-        className="w-full h-full"
-      />
-    );
+    return <canvas ref={canvasRef} width={200} height={50} className="w-full h-full" />;
   }
 
   return (
@@ -122,10 +104,7 @@ const TrackWaveform = ({ isPlaying, audioRef, trackId, color = '#75BDBC' }) => {
         <div 
           key={i} 
           className="w-[3px] rounded-full" 
-          style={{ 
-            height: `${height}%`, 
-            backgroundColor: color 
-          }} 
+          style={{ height: `${height}%`, backgroundColor: color }} 
         />
       ))}
     </div>

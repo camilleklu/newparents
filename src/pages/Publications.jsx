@@ -18,7 +18,7 @@ const Publications = () => {
       <div className="w-full h-6 bg-[#FFB041] mb-4" />
 
       {/* --- 2. HEADER --- */}
-      <div className="flex justify-between items-center px-6 my-6">
+      <div className="flex justify-between items-center px-6 my-8">
         <h1 className="text-3xl font-bold text-gray-800">Publications</h1>
       </div>
 

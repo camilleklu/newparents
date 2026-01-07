@@ -32,11 +32,11 @@ const ArticleCard = ({ article }) => {
                     </h3>
                     <div className="flex items-center justify-between gap-4 text-xs text-gray-400 mb-2">
                         <div className="flex items-center gap-1">
-                            <User size={14} />
+                            <User size={14} className="text-[#75BDBC]" />
                             {article.author}
                         </div>
                         <div className="flex items-center gap-1">
-                            <Calendar size={14} />
+                            <Calendar size={14} className="text-[#75BDBC]" />
                             {article.date}
                         </div>
                     </div>
@@ -46,7 +46,6 @@ const ArticleCard = ({ article }) => {
 
                     <button
                         className="flex gap-1 text-[#63B6B4] font-bold text-sm items-center"
-                        onClick={() => alert(`Ouvrir l'article : ${article.title}`)}
                     >
                         Lire la suite
                         <ArrowRight size={10} />

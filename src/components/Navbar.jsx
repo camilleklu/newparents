@@ -22,7 +22,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed bottom-5 left-0 right-0 z-50">
+    <nav className="fixed bottom-2 left-0 right-0 z-50">
       <div className="bg-[rgba(252,251,248,1)] m-2 px-6 py-3 rounded-[999px] shadow-[0_-5px_20px_rgba(0,0,0,0.06)] flex justify-between items-center h-20">
         
         {navItems.map((item) => (
