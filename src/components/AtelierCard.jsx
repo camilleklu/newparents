@@ -11,14 +11,27 @@ const AtelierCard = ({ workshop, className = "" }) => {
     >
       {/* --- IMAGE --- */}
       <div className="w-full h-40 relative shrink-0">
-        {workshop.img ? (
+        {/* Correction ici : on utilise workshop.image pour correspondre à tes données */}
+        {workshop.image ? (
           <img
-            src={workshop.img}
+            src={workshop.image}
             alt={workshop.title}
             className="w-full h-full object-cover"
           />
         ) : (
-          <div className={`w-full h-full ${workshop.imageColor || 'bg-[#75BDBC]'} opacity-80`} />
+          /* Fallback : si pas d'image, on affiche la couleur ou une couleur par défaut */
+          <div
+            className={`w-full h-full ${
+              workshop.imageColor || "bg-[#75BDBC]"
+            } opacity-80`}
+          />
+        )}
+
+        {/* Badge Places (Optionnel mais sympa car tu as la donnée) */}
+        {workshop.spots !== undefined && (
+          <div className="absolute top-3 right-3 bg-white/95 px-2 py-1 rounded-lg text-xs font-bold text-[#FFB041] shadow-sm">
+            {workshop.spots === 0 ? "Complet" : `${workshop.spots} places`}
+          </div>
         )}
       </div>
 

@@ -1,3 +1,5 @@
+import meme from "../assets/thumbnail/meme.png";
+
 export const ateliersList = [
   {
     id: 1,
@@ -7,8 +9,8 @@ export const ateliersList = [
     date: "12 Juin 2024",
     time: "14:00",
     location: "Paris 11ème",
-    imageColor: "bg-teal-200",
-    spots: 2, // Il ne reste que 2 places !
+    image: meme, // Image bébé calme
+    spots: 2,
   },
   {
     id: 2,
@@ -18,7 +20,7 @@ export const ateliersList = [
     date: "15 Juin 2024",
     time: "10:00",
     location: "Lyon Centre",
-    imageColor: "bg-orange-200",
+    image: meme, // Image Yoga
     spots: 5,
   },
   {
@@ -29,8 +31,9 @@ export const ateliersList = [
     date: "20 Juin 2024",
     time: "18:00",
     location: "Bordeaux",
-    imageColor: "bg-blue-200",
-    spots: 0, // Complet
+    image:
+      "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=800&auto=format&fit=crop", // Image sommeil
+    spots: 0,
   },
   {
     id: 4,
@@ -40,7 +43,7 @@ export const ateliersList = [
     date: "25 Juin 2024",
     time: "09:30",
     location: "Lille",
-    imageColor: "bg-purple-200",
+    image: meme, // Image portage/maman
     spots: 8,
   },
 ];
