@@ -1,6 +1,5 @@
-@import "tailwindcss";
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700;900&family=Schoolbell&display=swap');
+@import "tailwindcss";
 
 .font-poppins {
     font-family: 'Poppins', sans-serif !important;
