@@ -9,7 +9,7 @@ export const ateliersList = [
     date: "12 Juin 2024",
     time: "14:00",
     location: "Paris 11ème",
-    image: meme, // Image bébé calme
+    image: "https://www.autourdebebe.com/conseils/wp-content/uploads/2019/07/794_massage_bebe-1170x600.jpg", // Image bébé calme
     spots: 2,
   },
   {

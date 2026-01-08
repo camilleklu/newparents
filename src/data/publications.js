@@ -7,7 +7,7 @@ export const articleList = [
     date: "Aujourd'hui, 10:30",
     excerpt: "Comment instaurer une routine de sommeil efficace dès les premières semaines...",
     content: "Le texte long complet de l'article sur le sommeil de bébé ira ici...",
-    img: "https://i.pinimg.com/236x/d1/4b/c1/d14bc15248dd54711f9ceb5c023c4231.jpg"
+    img: "https://www.lpcr.fr/app/uploads/2024/07/65312935a8823_bb-dort-beaucoup-scaled.jpeg"
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ export const articleList = [
     date: "Hier, 15:45",
     excerpt: "Les étapes clés pour introduire les morceaux en toute sécurité...",
     content: "Le texte long complet sur la nutrition...",
-    img: "https://i.pinimg.com/474x/0e/41/e9/0e41e958f75299010e00e7adf796bcaf.jpg"
+    img: "https://mapetiteassiette.com/wp-content/uploads/2020/06/labimg_870_blw-e1592986608495.jpg"
   },
   {
     id: 3,
